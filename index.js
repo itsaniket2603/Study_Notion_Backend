@@ -22,9 +22,9 @@ app.use(cookieParser());  // middleware setup
 
 // CORS setup with allowed origins
 const allowedOrigins = [
-   "http://localhost:2000",
-  //  "https://personal-project-fg4k.vercel.app",
-  // "https://personal-project-3amo.vercel.app",
+  //  "http://localhost:2000",
+  // //  "https://personal-project-fg4k.vercel.app",
+  // // "https://personal-project-3amo.vercel.app",
   "https://personal-project-3amo.vercel.app"
 ];
 
