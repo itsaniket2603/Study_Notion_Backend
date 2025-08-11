@@ -22,19 +22,19 @@ app.use(cookieParser());  // middleware setup
 
 // CORS setup with allowed origins
 const allowedOrigins = [
-   "http://localhost:2000",
-  // //  "https://personal-project-fg4k.vercel.app",
-  // // "https://personal-project-3amo.vercel.app",
-  "https://personal-project-3amo.vercel.app"
+  "http://localhost:2000",
+  "https://personal-project-3amo.vercel.app",
+  // add other frontend URLs here if any
 ];
 
+// CORS middleware
 app.use(
   cors({
     origin: function (origin, callback) {
       // allow requests with no origin like Postman or curl
       if (!origin) return callback(null, true);
       if (allowedOrigins.indexOf(origin) === -1) {
-        const msg = `The CORS policy for this site does not allow access from the specified Origin.`;
+        const msg = `The CORS policy for this site does not allow access from the specified Origin: ${origin}`;
         return callback(new Error(msg), false);
       }
       return callback(null, true);
@@ -42,6 +42,19 @@ app.use(
     credentials: true,
   })
 );
+
+// Handle preflight OPTIONS requests for all routes
+app.options("*", cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = `The CORS policy for this site does not allow access from the specified Origin: ${origin}`;
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true,
+}));
 
 app.use(
   fileUpload({
