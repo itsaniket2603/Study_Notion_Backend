@@ -24,6 +24,7 @@ app.use(cookieParser());  // middleware setup
 const allowedOrigins = [
   "http://localhost:2000",
   "https://personal-project-3amo.vercel.app",
+  "https://personal-project-3amo.vercel.app/"
   // add other frontend URLs here if any
 ];
 
